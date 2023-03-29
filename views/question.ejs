@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>HANDA</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/headers/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .qe-container {
+        margin: 5px 5px;
+       padding: 10px 70px 10px 70px;
+      }
+
+      .fs-20{
+        font-size: 20px;
+      }
+
+      .que-container {
+      margin: 5px 5px;
+      padding: 10px 70px 10px 70px;
+    }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="/css/headers.css" rel="stylesheet">
+  </head>
+  <body>
+
+<main>
+  <!-- <h1 class="visually-hidden">Headers examples</h1> -->
+
+  <header class="py-3 mb-3 border-bottom">
+    <div class="container container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
+      <div class="d-flex">
+
+        <h4 class="logo" onclick="location.href='/'">handa</h4>
+      </div>
+
+      <% if(logined=="true") { %>
+      <!-- 로그인 후 -->
+      <div class="d-flex align-items-center">
+        <form action="/search" method="post" class="w-100 me-3">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="word">
+        </form>
+
+        <div class="flex-shrink-0 dropdown">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+            <li><a class="dropdown-item" href="/question">질문하기</a></li>
+            <li><a class="dropdown-item" onclick="window.open('/chat','chat','width=500,height=600,location=no,status=no,scrollbars=no');">채팅</a></li>
+            <li><a class="dropdown-item" href="/my">내 정보</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/logout">로그아웃</a></li>
+          </ul>
+        </div>
+      </div>
+      <% } else { %>
+
+      <!-- 로그인 전 -->
+      <div class="d-flex align-items-center">
+        <form action="/search" method="post" class="w-100 me-3">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="word">
+        </form>
+
+        <div class="col-md text-end">
+          <button type="button" class="btn btn-outline-warning" onclick="location.href='/login'">Login</button>
+        </div>
+      </div>
+      <% } %>
+
+    </div>
+  </header>
+  
+  <!-- 여기다가 추가 -->
+  <div class="container">
+    <div class="que-container">
+      
+      <h3 class="mb-4"> 질문 등록 </h3>
+
+      <!-- <div class="col-12 mb-3">
+        <label for="m-title" class="form-label">자격증 명</label>
+  
+        <div class="input-group mb-3">
+          <select class="form-select" id="m-title">
+            <option selected >정보처리산업기사</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-12 mb-4">
+        <label for="sub-title" class="form-label">과목 명</label>
+  
+        <div class="input-group mb-3">
+          <select class="form-select" id="sub-title">
+            <option selected>데이터베이스</option>
+            <option value="1">전자계산기구조</option>
+            <option value="2">시스템분석설계</option>
+            <option value="3">운영체제</option>
+            <option value="4">정보통신개론</option>
+          </select>
+        </div>
+      </div> -->
+
+      <!-- <div class="mb-3">
+        <div class="mb-3">질문</div>
+        <button type="button" class="btn btn-outline-secondary btn-sm">사진첨부</button>
+        <sqan id="img_name"></sqan>
+      </div>
+
+      <div class="mb-3 text-end">
+        <button type="button" class="btn btn-warning">등록하기</button>
+      </div> -->
+
+      <form action="/question/upload" method="post" enctype="multipart/form-data">
+        <div class="col-12 mb-3">
+          <label for="m-title" class="form-label">자격증 명</label>
+    
+          <div class="input-group mb-3">
+            <select class="form-select" id="m-title" name="title">
+              <option selected value="ieip">정보처리산업기사</option>
+            </select>
+          </div>
+        </div>
+  
+        <div class="col-12 mb-4">
+          <label for="sub-title" class="form-label">과목 명</label>
+    
+          <div class="input-group mb-3">
+            <select class="form-select" id="sub-title" name="stitle">
+              <option selected value="1">데이터베이스</option>
+              <option value="8">전자계산기구조</option>
+              <option value="9">시스템분석설계</option>
+              <option value="10">운영체제</option>
+              <option value="11">정보통신개론</option>
+            </select>
+          </div>
+        </div>
+        <input type="file" name="f-n"/> 
+        <div class="text-small">* 확장자는 *.png 만 가능합니다.</div>
+        <div class="mb-3 text-end">
+          <input type="submit" class="btn btn-warning" value="등록하기">
+        </div>
+      </form>
+
+      <!-- <div class="mb-3 text-end">
+        <button type="button" class="submit btn btn-warning">등록하기</button>
+      </div> -->
+    </div>
+  </div>
+  
+</main>
+
+<script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+      
+  </body>
+</html>
